@@ -1,30 +1,44 @@
 <template>
   <div class="inputBox shadow">
-      <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
-      <span class="addContainer" v-on:click="addTodo">
-          <i class="fas fa-plus addBtn"></i>
-      </span>
+        <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
+        <span class="addContainer" v-on:click="addTodo">
+            <i class="fas fa-plus addBtn"></i>
+        </span>
+
+        <Modal v-if="showModal">
+            <h3 slot="header">경고!!</h3>
+            <p slot="body">경고의 바디~~오예~~</p>
+            <span slot="footer">
+                <button @click="showModal = false">okok</button>
+            </span>
+        </Modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/Modal.vue'
 export default {
-    data : function(){
+    data (){
         return {
-            newTodoItem: ""
+            newTodoItem: "",
+            showModal: false
         }
     },
     methods: {
-        addTodo: function() {
+        addTodo() {
             if(this.newTodoItem !== '') {
-                let obj = {'completed': false, 'item':this.newTodoItem}
-                localStorage.setItem(this.newTodoItem,JSON.stringify(obj));
+                this.$emit('addTodoItem', this.newTodoItem)
                 this.clearInput();
+            } else {
+                this.showModal = !this.showModal;
             }
         },
-        clearInput: function() {
+        clearInput() {
             this.newTodoItem = '';
         }
+    },
+    components: {
+        Modal
     }
 }
 </script>
