@@ -1,14 +1,8 @@
+const vueTodoDataName = "vue-todo-data"
+
 const storage = {
     fetch() {
-        const arr = [];
-        if(localStorage.length > 0) {
-            for (let i=1; i<localStorage.length; i++) {
-                if(localStorage.key(i) !== 'loglevel:webpack-dev-server' && localStorage.key(i) !== 'csCursors') {
-                    arr.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-                }
-            }
-        }
-        return arr;
+        return JSON.parse(localStorage.getItem(vueTodoDataName));
     }
 };
 
@@ -24,22 +18,22 @@ const getters = {
 
 const mutations = {
     addOneItem(state, todoitem){
-        let obj = {completed: false, item:todoitem}
-        localStorage.setItem(todoitem,JSON.stringify(obj));
-        state.todoItems.push(obj);
+        state.todoItems.push({completed: false, item:todoitem});
+        localStorage.setItem(vueTodoDataName,JSON.stringify(state.todoItems));
     },
-    removeOneItem(state, payload){
-        localStorage.removeItem(payload.todoItem.item);
-        state.todoItems.splice(payload.index, 1)
+    removeOneItem(state, todoItem){
+        state.todoItems.splice(state.todoItems.indexOf(todoItem), 1)
+        localStorage.setItem(vueTodoDataName,JSON.stringify(state.todoItems));
     },
-    toggleOneItem(state, payload){
-        state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
-        localStorage.removeItem(payload.todoItem.item);
-        localStorage.setItem(payload.todoItem.item, JSON.stringify(payload.todoItem));
+    toggleOneItem(state, todoItem){
+        let index = state.todoItems.indexOf(todoItem);
+        state.todoItems[index].completed = !state.todoItems[index].completed;
+        localStorage.setItem(vueTodoDataName,JSON.stringify(state.todoItems));
     },
     clearAllItems(state){
-        localStorage.clear();
         state.todoItems = [];
+        localStorage.clear();
+        
     }
 };
 
