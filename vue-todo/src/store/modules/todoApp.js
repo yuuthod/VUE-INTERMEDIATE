@@ -2,7 +2,12 @@ const vueTodoDataName = "vue-todo-data"
 
 const storage = {
     fetch() {
-        return JSON.parse(localStorage.getItem(vueTodoDataName));
+        const vueArr = localStorage.getItem(vueTodoDataName);
+        if (vueArr != null && vueArr != "") {
+            return JSON.parse(vueArr);
+        }else {
+            return [];
+        }
     }
 };
 
@@ -33,7 +38,6 @@ const mutations = {
     clearAllItems(state){
         state.todoItems = [];
         localStorage.clear();
-        
     }
 };
 
