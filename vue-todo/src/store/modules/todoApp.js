@@ -23,8 +23,9 @@ const getters = {
 
 const mutations = {
     addOneItem(state, todoitem){
-        state.todoItems.push({completed: false, item:todoitem});
-        localStorage.setItem(vueTodoDataName,JSON.stringify(state.todoItems));
+        const todoArr = state.todoItems;
+        todoArr.push({ id: todoArr.length == 0 ? 0 : todoArr[todoArr.length - 1].id+1, completed: false, item:todoitem});
+        localStorage.setItem(vueTodoDataName, JSON.stringify(todoArr));
     },
     removeOneItem(state, todoItem){
         state.todoItems.splice(state.todoItems.indexOf(todoItem), 1)
