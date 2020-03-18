@@ -17,32 +17,25 @@ export default {
 </script>
 
 <style>
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: #202020;
+  }
+  a:hover {
+    color: #42b883;
+    text-decoration: underline;
+  }
+
   /* Route */
   .page-enter-active, .page-leave-active {
     transition: opacity .5s;
   }
   .page-enter, .page-leave-to {
     opacity: 0;
-  }
-
-  body {
-    padding: 0;
-    margin: 0;
-  }
-  div.container > div {
-    margin: 20px;
-  }
-  div.container > div > p > a:link {
-    color: #555;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 15pt;;
-  }
-  div.container > div > p > a:hover {
-    border-bottom: 2px solid #555;
-  }
-  div.container > div > p > small {
-    padding-left: 10px;
-    color: #bbb;
   }
 </style>

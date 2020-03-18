@@ -1,27 +1,18 @@
 <template>
-  <div class="news-container">
-    <input type="text" hidden>
-    <p v-for="item in fetchedNews" v-bind:key="item.id">
-      <a v-bind:href="item.url">{{ item.title }}</a>
-      <small>
-        {{item.domain}}
-        <router-link v-bind:to="`/user/${item.user}`">{{ item.user }}</router-link>
-      </small>
-    </p>
+  <div>
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import ListItem from '../components/ListItem.vue';
 export default {
-  computed: {
-    ...mapGetters(['fetchedNews'])
-  },
-  created() {
-    this.$store.dispatch('FETCH_NEWS');
+  components: {
+    ListItem,
   }
 }
 </script>
 
 <style scoped>
+
 </style>
