@@ -27,25 +27,26 @@
 
 <script>
 export default {
-  created() {
-    if(this.$route.name === "news") {
-      this.$store.dispatch('FETCH_NEWS');
-    }else if(this.$route.name === "ask") {
-      this.$store.dispatch('FETCH_ASK');
-    }else if(this.$route.name === "jobs") {
-      this.$store.dispatch('FETCH_JOBS');
-    }
-  },
+  // created() {
+  //   if(this.$route.name === "news") {
+  //     this.$store.dispatch('FETCH_NEWS');
+  //   }else if(this.$route.name === "ask") {
+  //     this.$store.dispatch('FETCH_ASK');
+  //   }else if(this.$route.name === "jobs") {
+  //     this.$store.dispatch('FETCH_JOBS');
+  //   }
+  // },
   computed: {
     listItems() {
-      if(this.$route.name === "news") {
-        return this.$store.state.news;
-      }else if(this.$route.name === "ask") {
-        return this.$store.state.ask;
-      }else {
-        // jobs
-        return this.$store.state.jobs;
-      }
+      return this.$store.state.list;
+      // if(this.$route.name === "news") {
+      //   return this.$store.state.news;
+      // }else if(this.$route.name === "ask") {
+      //   return this.$store.state.ask;
+      // }else {
+      //   // jobs
+      //   return this.$store.state.jobs;
+      // }
     },
   }
 }
