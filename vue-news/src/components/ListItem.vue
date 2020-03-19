@@ -9,7 +9,12 @@
         <!-- 기타정보 -->
         <div>
           <p>
-            <a v-bind:href="item.url">{{ item.title }}</a>
+            <template v-if="item.type === 'ask'">
+              <router-link v-bind:to="`item/${item.id}`">{{ item.title }}</router-link>
+            </template>
+            <template v-else>
+              <a v-bind:href="item.url">{{ item.title }}</a>
+            </template>
           </p>
           <small>
             by <router-link v-bind:to="`/user/${item.user}`">{{ item.user }}</router-link>
@@ -21,7 +26,6 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex';
 export default {
   created() {
     if(this.$route.name === "news") {
@@ -33,9 +37,7 @@ export default {
     }
   },
   computed: {
-    // ...mapGetters(['fetchedNews', "fetchedAsk", "fetchedJobs"]),
     listItems() {
-      console.log(this)
       if(this.$route.name === "news") {
         return this.$store.state.news;
       }else if(this.$route.name === "ask") {
