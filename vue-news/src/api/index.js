@@ -6,29 +6,54 @@ const config = {
 };
 
 // 2. API 함수들을 정리
-function fetchNewsList() {
-    return axios.get(`${config.baseUrl}news/1.json`);
+async function fetchNewsList() {
+  try {
+    return await axios.get(`${config.baseUrl}news/1.json`);
+  } catch (error) {
+   console.log(error); 
+  }
 }
 
-function fetchJobsList() {
-  return axios.get(`${config.baseUrl}jobs/1.json`);
+async function fetchJobsList() {
+  try {
+    return await axios.get(`${config.baseUrl}jobs/1.json`);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-function fetchAskList() {
-  return axios.get(`${config.baseUrl}ask/1.json`);
+async function fetchAskList() {
+  try {
+    return await axios.get(`${config.baseUrl}ask/1.json`);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-function fetchList(pageName) {
-  return axios.get(`${config.baseUrl}${pageName}.json`)
+async function fetchList(pageName) {
+  try {
+    return await axios.get(`${config.baseUrl}${pageName}.json`);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-function fetchUserInfo(username) {
-  return axios.get(`${config.baseUrl}user/${username}.json`);
+async function fetchUserInfo(username) {
+  try {
+    return await axios.get(`${config.baseUrl}user/${username}.json`);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-function fetchItemInfo(itemid) {
-  return axios.get(`${config.baseUrl}item/${itemid}.json`);
+async function fetchItemInfo(itemid) {
+  try {
+    return await axios.get(`${config.baseUrl}item/${itemid}.json`);
+  } catch (error) {
+    console.log(error);
+  }
 }
+
 export {
     fetchNewsList,
     fetchJobsList,

@@ -59,10 +59,17 @@ export default {
   }
 
   /* Route */
-  .page-enter-active, .page-leave-active {
-    transition: opacity .5s;
+  .page-enter-active {
+    transition: opacity 1s;
   }
-  .page-enter, .page-leave-to {
+  .page-enter {
+    opacity: 0;
+  }
+  /* .page-leave-active {
+    transition: opacity 10s;
+  } */
+  .page-leave-to {
     opacity: 0;
   }
 </style>
+

@@ -17,7 +17,9 @@
             </template>
           </p>
           <small>
-            by <router-link v-bind:to="`/user/${item.user}`">{{ item.user }}</router-link>
+            <template v-if="item.type !== 'job'">
+              by <router-link v-bind:to="`/user/${item.user}`">{{ item.user }}</router-link>
+            </template>
           </small>
         </div>
       </li>

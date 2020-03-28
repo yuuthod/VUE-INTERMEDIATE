@@ -1,40 +1,34 @@
 import { fetchNewsList, fetchAskList, fetchJobsList, fetchList, fetchUserInfo, fetchItemInfo } from "../api/index.js";
 
 export default {
-  FETCH_NEWS({ commit }) {
-    fetchNewsList()
-      .then(({ data }) => {
-        commit("SET_NEWS", data);
-        return data;
-      })
-      .catch(error => console.log(error));
+  async FETCH_NEWS({ commit }) {
+    const response = await fetchNewsList();
+    commit('SET_NEWS', response.data);
+    return response;
   },
-  FETCH_ASK({ commit }) {
-    fetchAskList()
-      .then(({ data }) => commit("SET_ASK", data))
-      .catch(error => console.log(error));
+  async FETCH_ASK({ commit }) {
+    const response = await fetchAskList();
+    commit('SET_ASK', response.data);
+    return response;
   },
-  FETCH_JOBS({ commit }) {
-    fetchJobsList()
-      .then(({ data }) => commit("SET_JOBS", data))
-      .catch(error => console.log(error));
+  async FETCH_JOBS({ commit }) {
+    const response = await fetchJobsList();
+    commit('SET_JOBS', response.data);
+    return response;
   },
-  FETCH_USER({commit}, username) {
-    fetchUserInfo(username)
-      .then(({ data }) => commit('SET_USER', data))
-      .catch(error => console.log(error))
+  async FETCH_USER({commit}, username) {
+    const {data} = await fetchUserInfo(username);
+    commit('SET_USER', data);
+    return data;
   },
-  FETCH_ITEM({commit}, itemid) {
-    fetchItemInfo(itemid)
-      .then(({ data }) => commit('SET_ITEM', data))
-      .catch(error => console.log(error))
+  async FETCH_ITEM({commit}, itemid) {
+    const {data} = await fetchItemInfo(itemid);
+    commit('SET_ITEM', data);
+    return data;
   },
-  FETCH_LIST({commit}, pageName) {
-    return fetchList(pageName)
-      .then(({data}) => {
-        commit('SET_LIST', data);
-        return data;
-      })
-      .catch(error => console.log(error))
+  async FETCH_LIST({commit}, pageName) {
+    const response = await fetchList(pageName);
+    commit('SET_LIST', response.data);
+    return response;
   }
 };

@@ -6,13 +6,13 @@
 
 <script>
 import ListItem from '../components/ListItem.vue';
-import ListMixin from '../mixins/ListMixin.js';
-// import bus from '../utils/bus.js';
+// import ListMixin from '../mixins/ListMixin.js';
+import bus from '../utils/bus.js';
 export default {
   components: {
     ListItem,
   },
-  mixins: [ListMixin]
+  // mixins: [ListMixin]
   // created() {
   //   setTimeout(() => {
   //     this.$store.dispatch('FETCH_ASK')
@@ -23,6 +23,9 @@ export default {
   //     .catch(error => console.log(error));
   //   }, 3000);
   // }
+  mounted() {
+    bus.$emit('end:spinner');
+  }
 }
 </script>
 
